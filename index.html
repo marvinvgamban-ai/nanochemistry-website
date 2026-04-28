@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NanoWorld - Exploring the Nano World</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-atom"></i>
+                NanoWorld
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#simulations" class="nav-link">Simulations</a></li>
+                <li><a href="#applications" class="nav-link">Applications</a></li>
+                <li><a href="#videos" class="nav-link">Videos</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#quiz" class="nav-link">Quiz</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <canvas id="particleCanvas" class="canvas-container"></canvas>
+        <div class="floating-particles">
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
+            <div class="particle particle-4"></div>
+            <div class="particle particle-5"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Exploring the Nano World</h1>
+            <p class="hero-subtitle">Discover the fascinating realm of nanochemistry, nanotechnology, and nanomaterials. From atoms to applications, explore the science that's shaping the future.</p>
+            <button class="cta-btn" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+                <i class="fas fa-arrow-down"></i> Start Exploring
+            </button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Understanding the Basics</h2>
+            <p class="section-subtitle">Learn the fundamental concepts of nanochemistry and nanotechnology</p>
+            
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="card-icon"><i class="fas fa-flask"></i></div>
+                    <h3>Nanochemistry</h3>
+                    <p>The study of chemical phenomena at the nanoscale (1-100 nm). It explores how atoms and molecules behave differently when confined to such tiny dimensions, leading to unique chemical properties and reactions.</p>
+                </div>
+                <div class="about-card">
+                    <div class="card-icon"><i class="fas fa-microchip"></i></div>
+                    <h3>Nanotechnology</h3>
+                    <p>The practical application of nanoscale science to build structures and devices at the molecular and atomic level. It enables us to manipulate matter at the smallest scales to create new materials and technologies.</p>
+                </div>
+                <div class="about-card">
+                    <div class="card-icon"><i class="fas fa-cube"></i></div>
+                    <h3>Nanomaterials</h3>
+                    <p>Materials with at least one dimension in the nanoscale range. These include carbon nanotubes, graphene, nanoparticles, and quantum dots. They exhibit novel properties distinct from their bulk counterparts.</p>
+                </div>
+            </div>
+
+            <div class="size-comparison">
+                <h3>Size Comparison Chart</h3>
+                <div class="scale-chart">
+                    <div class="scale-item">
+                        <div class="scale-bar macro"></div>
+                        <p>Macroscopic<br>(1 mm)</p>
+                    </div>
+                    <div class="scale-item">
+                        <div class="scale-bar micro"></div>
+                        <p>Microscopic<br>(1 μm)</p>
+                    </div>
+                    <div class="scale-item">
+                        <div class="scale-bar nano"></div>
+                        <p>Nanoscale<br>(1 nm)</p>
+                    </div>
+                    <div class="scale-item">
+                        <div class="scale-bar atom"></div>
+                        <p>Atomic<br>(0.1 nm)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Simulations -->
+    <section id="simulations" class="simulations">
+        <div class="container">
+            <h2 class="section-title">Interactive Simulations</h2>
+            <p class="section-subtitle">Engage with hands-on demonstrations of nanoscale phenomena</p>
+
+            <!-- Simulation 1: Particle Size -->
+            <div class="simulation-card">
+                <h3><i class="fas fa-circle"></i> Particle Size Comparison</h3>
+                <p>Adjust the slider to see how nanoparticles scale from 1 to 100 nanometers. Understand the dramatic size differences in the nanoscale world.</p>
+                <div class="simulation-content">
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <input type="range" id="sizeSlider" class="slider" min="1" max="100" value="10">
+                        <span id="sizeLabel">10 nm</span>
+                    </div>
+                    <div class="particles-display">
+                        <div id="particleDemo" class="particle-demo" style="width: 50px; height: 50px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simulation 2: Surface Area to Volume -->
+            <div class="simulation-card">
+                <h3><i class="fas fa-chart-pie"></i> Surface Area to Volume Ratio</h3>
+                <p>Explore how the surface area-to-volume ratio changes as particles get smaller. This is why nanoparticles are so reactive!</p>
+                <div class="simulation-content">
+                    <div class="ratio-display">
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                            <input type="range" id="cubeSlider" class="slider" min="1" max="50" value="10">
+                            <span style="color: var(--accent-color); font-weight: 600;">Side: <span id="sideLength">10</span> nm</span>
+                        </div>
+                        <div class="ratio-info" style="margin-top: 20px;">
+                            <h4>Calculation Results</h4>
+                            <p><strong>Surface Area:</strong> <span id="surfaceArea" style="color: var(--accent-color);">600</span> nm²</p>
+                            <p><strong>Volume:</strong> <span id="volume" style="color: var(--accent-color);">1000</span> nm³</p>
+                            <p><strong>SA/V Ratio:</strong> <span id="ratioValue" style="color: var(--accent-pink); font-size: 1.2rem;">0.6</span> nm⁻¹</p>
+                            <p class="info-text">✨ Higher ratio = Higher reactivity!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simulation 3: Brownian Motion -->
+            <div class="simulation-card">
+                <h3><i class="fas fa-wave-square"></i> Brownian Motion - Diffusion Simulation</h3>
+                <p>Watch nanoparticles move randomly due to collisions with surrounding molecules. This demonstrates the concept of diffusion at the nanoscale.</p>
+                <div class="simulation-content">
+                    <canvas id="diffusionCanvas" width="600" height="400"></canvas>
+                    <div style="display: flex; gap: 10px; justify-content: center;">
+                        <button class="sim-btn" id="playBtn" onclick="startDiffusion()"><i class="fas fa-play"></i> Play</button>
+                        <button class="sim-btn reset-btn" onclick="resetDiffusion()"><i class="fas fa-redo"></i> Reset</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="applications">
+        <div class="container">
+            <h2 class="section-title">Real-World Applications</h2>
+            <p class="section-subtitle">Discover how nanotechnology is transforming industries</p>
+            
+            <div class="applications-grid">
+                <div class="app-card">
+                    <div class="app-image"><i class="fas fa-heartbeat"></i></div>
+                    <h3>Medicine & Healthcare</h3>
+                    <p><strong>Drug Delivery:</strong> Nanoparticles deliver medications directly to diseased cells.</p>
+                    <p><strong>Cancer Treatment:</strong> Targeted nanoparticles attack cancer cells while sparing healthy tissue.</p>
+                    <p><strong>Diagnostics:</strong> Nanosensors detect diseases at early stages with high accuracy.</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-image"><i class="fas fa-microchip"></i></div>
+                    <h3>Electronics & Computing</h3>
+                    <p><strong>Nanochips:</strong> Transistors get smaller, faster, and more efficient.</p>
+                    <p><strong>Sensors:</strong> Ultra-sensitive nanostructured sensors for detection.</p>
+                    <p><strong>Storage:</strong> High-capacity, nano-scale memory and storage devices.</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-image"><i class="fas fa-droplet"></i></div>
+                    <h3>Environment & Water</h3>
+                    <p><strong>Water Purification:</strong> Nanofilters remove contaminants effectively.</p>
+                    <p><strong>Pollution Control:</strong> Nanoparticles neutralize environmental pollutants.</p>
+                    <p><strong>Remediation:</strong> Nano-based solutions clean contaminated sites.</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-image"><i class="fas fa-cube"></i></div>
+                    <h3>Materials & Manufacturing</h3>
+                    <p><strong>Stronger Materials:</strong> Carbon nanotubes are 100x stronger than steel.</p>
+                    <p><strong>Lightweight Composites:</strong> Nano-reinforced materials for aerospace.</p>
+                    <p><strong>Smart Materials:</strong> Nanostructured materials with adaptive properties.</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-image"><i class="fas fa-bolt"></i></div>
+                    <h3>Energy & Storage</h3>
+                    <p><strong>Better Batteries:</strong> Nanostructured electrodes improve capacity and speed.</p>
+                    <p><strong>Solar Cells:</strong> Nano-enhanced photovoltaics increase efficiency.</p>
+                    <p><strong>Fuel Cells:</strong> Nanoparticle catalysts enable clean energy.</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-image"><i class="fas fa-star"></i></div>
+                    <h3>Cosmetics & Textiles</h3>
+                    <p><strong>Skincare:</strong> Nano-particles penetrate skin more effectively.</p>
+                    <p><strong>Anti-microbial Fabrics:</strong> Silver nanoparticles prevent bacterial growth.</p>
+                    <p><strong>UV Protection:</strong> Nanoparticles provide superior sun protection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section id="videos" class="videos">
+        <div class="container">
+            <h2 class="section-title">Educational Videos</h2>
+            <p class="section-subtitle">Watch expert explanations on nanotechnology concepts</p>
+            
+            <div class="videos-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div style="background: linear-gradient(135deg, #7c3aed, #00d9ff); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-play" style="font-size: 3rem; color: white;"></i>
+                        </div>
+                        <div class="play-button" onclick="playVideo('intro')"><i class="fas fa-play"></i></div>
+                    </div>
+                    <h3>Introduction to Nanotechnology</h3>
+                    <p>Discover what nanotechnology is and why it matters for the future.</p>
+                    <button class="video-btn" onclick="playVideo('intro')">Watch Video</button>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div style="background: linear-gradient(135deg, #ec4899, #00d9ff); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-play" style="font-size: 3rem; color: white;"></i>
+                        </div>
+                        <div class="play-button" onclick="playVideo('materials')"><i class="fas fa-play"></i></div>
+                    </div>
+                    <h3>Nanomaterials Explained</h3>
+                    <p>Learn about different types of nanomaterials and their properties.</p>
+                    <button class="video-btn" onclick="playVideo('materials')">Watch Video</button>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div style="background: linear-gradient(135deg, #10b981, #00d9ff); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-play" style="font-size: 3rem; color: white;"></i>
+                        </div>
+                        <div class="play-button" onclick="playVideo('medicine')"><i class="fas fa-play"></i></div>
+                    </div>
+                    <h3>Nanomedics: Healthcare</h3>
+                    <p>Explore how nanotechnology is revolutionizing medical treatment.</p>
+                    <button class="video-btn" onclick="playVideo('medicine')">Watch Video</button>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div style="background: linear-gradient(135deg, #f59e0b, #00d9ff); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-play" style="font-size: 3rem; color: white;"></i>
+                        </div>
+                        <div class="play-button" onclick="playVideo('future')"><i class="fas fa-play"></i></div>
+                    </div>
+                    <h3>Future of Nanotechnology</h3>
+                    <p>What does the future hold for this revolutionary field?</p>
+                    <button class="video-btn" onclick="playVideo('future')">Watch Video</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeVideo()">&times;</span>
+            <iframe id="videoFrame" width="100%" height="500" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title">Image Gallery</h2>
+            <p class="section-subtitle">Visual exploration of nanostructures and nanomaterials</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #7c3aed, #00d9ff); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-dna" style="font-size: 4rem; color: rgba(255,255,255,0.3);"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Carbon Nanotubes</h4>
+                        <p>One of the most promising nanomaterials with exceptional strength and conductivity.</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #ec4899, #00d9ff); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-layer-group" style="font-size: 4rem; color: rgba(255,255,255,0.3);"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Graphene Sheets</h4>
+                        <p>Single-layer carbon atoms arranged in a lattice, with incredible properties.</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #10b981, #00d9ff); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-sphere" style="font-size: 4rem; color: rgba(255,255,255,0.3);"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Nanoparticles</h4>
+                        <p>Spherical structures with unique optical and electronic properties.</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #f59e0b, #00d9ff); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-project-diagram" style="font-size: 4rem; color: rgba(255,255,255,0.3);"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Nanowires</h4>
+                        <p>One-dimensional structures with high aspect ratios used in electronics.</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #8b5cf6, #00d9ff); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-cube" style="font-size: 4rem; color: rgba(255,255,255,0.3);"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Quantum Dots</h4>
+                        <p>Tiny semiconductor particles with size-dependent optical properties.</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #06b6d4, #00d9ff); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-flask" style="font-size: 4rem; color: rgba(255,255,255,0.3);"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h4>Nanocomposites</h4>
+                        <p>Multi-phase materials enhanced with nanoscale components.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="quiz">
+        <div class="container">
+            <h2 class="section-title">Test Your Knowledge</h2>
+            <p class="section-subtitle">Challenge yourself with our interactive nanochemistry quiz</p>
+            
+            <div class="quiz-container">
+                <div class="quiz-question" id="quizQuestion">
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+                        </div>
+                        <p><span id="questionCount">1</span> / 10</p>
+                    </div>
+                    <h4 id="questionText"></h4>
+                    <div class="quiz-options" id="optionsContainer"></div>
+                    <button class="quiz-btn" id="nextBtn" onclick="nextQuestion()" style="margin-top: 20px;">Next Question</button>
+                </div>
+
+                <div class="quiz-results hidden" id="quizResults">
+                    <h3>Quiz Complete! 🎉</h3>
+                    <div class="score-display">
+                        <p>Your Final Score:</p>
+                        <p id="scorePercentage" style="font-size: 3rem; margin-top: 10px;">0%</p>
+                        <p>Correct Answers: <span id="scoreValue">0</span>/10</p>
+                    </div>
+                    <p id="scoreMessage" style="font-size: 1.2rem;"></p>
+                    <button class="quiz-btn" onclick="restartQuiz()"><i class="fas fa-redo"></i> Retake Quiz</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><i class="fas fa-atom"></i> About NanoWorld</h4>
+                    <p>NanoWorld is an interactive educational platform dedicated to making nanotechnology and nanochemistry accessible and engaging for students and science enthusiasts worldwide.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#simulations">Simulations</a></li>
+                        <li><a href="#applications">Applications</a></li>
+                        <li><a href="#quiz">Quiz</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Learning Materials</a></li>
+                        <li><a href="#">Research Papers</a></li>
+                        <li><a href="#">Video Library</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NanoWorld - Interactive Educational Platform. All rights reserved. | Designed with ❤️ for science enthusiasts.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
