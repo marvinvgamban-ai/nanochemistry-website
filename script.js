@@ -357,146 +357,170 @@ document.addEventListener('keydown', function(event) {
 /* ============================================
    QUIZ FUNCTIONALITY
    ============================================ */
-const questions = [
+
+const quizData = [
     {
-        question: "What is the typical size range of nanomaterials?",
-        options: ["1 - 100 nm", "100 - 500 nm", "1 - 100 μm", "10 - 1000 nm"],
-        correct: 0,
-        explanation: "Nanomaterials are 1–100 nm in size."
+        question: "How many nanometers are in one micrometer?",
+        options: ["10 nm", "100 nm", "1000 nm", "10,000 nm"],
+        correct: 2
     },
     {
-        question: "Which nanomaterial is a single layer of carbon atoms?",
-        options: ["Carbon Nanotube", "Graphene", "Fullerene", "Quantum Dot"],
-        correct: 1,
-        explanation: "Graphene is a single layer of carbon atoms."
+        question: "What type of nanomaterial is graphene primarily composed of?",
+        options: ["Silicon atoms", "Carbon atoms", "Gold atoms", "Copper atoms"],
+        correct: 1
     },
     {
-        question: "What happens to surface area as size decreases?",
-        options: ["Decreases", "Same", "Increases", "Zero"],
-        correct: 2,
-        explanation: "Smaller particles have higher surface area-to-volume ratio."
+        question: "What is the approximate diameter of a typical nanoparticle?",
+        options: ["1-10 nm", "10-100 nm", "100-1000 nm", "1-10 μm"],
+        correct: 1
+    },
+    {
+        question: "Why do nanoparticles have higher reactivity than bulk materials?",
+        options: ["Higher temperature", "Higher surface area to volume ratio", "Lower density", "Magnetic properties"],
+        correct: 1
+    },
+    {
+        question: "Which application uses nanoparticles for drug delivery?",
+        options: ["Solar panels", "Computer chips", "Medical therapy", "Textile manufacturing"],
+        correct: 2
+    },
+    {
+        question: "What is Brownian motion?",
+        options: ["Organized particle movement", "Random movement of particles", "Rotation of molecules", "Vibration in solids"],
+        correct: 1
+    },
+    {
+        question: "Which nanomaterial is known for exceptional strength?",
+        options: ["Graphite", "Carbon nanotubes", "Sand", "Plastic"],
+        correct: 1
+    },
+    {
+        question: "What scale is considered 'nano'?",
+        options: ["10^-6 meters", "10^-9 meters", "10^-3 meters", "10^-12 meters"],
+        correct: 1
+    },
+    {
+        question: "Which industry benefits from nano-enhanced water purification?",
+        options: ["Fashion", "Entertainment", "Environmental treatment", "Sports"],
+        correct: 2
+    },
+    {
+        question: "What is a quantum dot?",
+        options: ["A type of chemical bond", "A semiconductor nanoparticle", "A large molecule", "A crystal structure"],
+        correct: 1
     }
-      // Add the rest of your 10 questions following this same format... 
-   ];
+];
 
-let currentQuestionIndex = 0;
+let currentQuestion = 0;
 let score = 0;
-let selectedOptionIndex = null;
-let hasChecked = false;
+let selectedAnswers = [];
+let quizAnswered = false;
 
-function loadQuestion() {
-    hasChecked = false;
-    selectedOptionIndex = null;
+function displayQuestion() {
+    if (currentQuestion >= quizData.length) {
+        showResults();
+        return;
+    }
 
-    const question = questions[currentQuestionIndex];
-
+    const question = quizData[currentQuestion];
     document.getElementById('questionText').textContent = question.question;
-    document.getElementById('questionCount').textContent = currentQuestionIndex + 1;
-
-    document.getElementById('progressFill').style.width =
-        ((currentQuestionIndex + 1) / questions.length * 100) + '%';
-
+    
     const optionsContainer = document.getElementById('optionsContainer');
     optionsContainer.innerHTML = '';
 
     question.options.forEach((option, index) => {
-        const btn = document.createElement('div');
-        btn.className = 'quiz-option';
-        btn.textContent = option;
-        btn.onclick = () => selectOption(index);
-        optionsContainer.appendChild(btn);
+        const optionElement = document.createElement('div');
+        optionElement.className = 'quiz-option';
+        optionElement.textContent = option;
+        optionElement.onclick = () => selectOption(index);
+        optionsContainer.appendChild(optionElement);
     });
 
-    // ✅ RESET EXPLANATION
-    const explanationBox = document.getElementById('explanationBox');
-    explanationBox.textContent = "";
-    explanationBox.classList.remove('show');
+    document.getElementById('questionCount').textContent = currentQuestion + 1;
+    const progress = ((currentQuestion + 1) / quizData.length) * 100;
+    document.getElementById('progressFill').style.width = progress + '%';
 
-    document.getElementById('checkBtn').classList.remove('hidden');
-    document.getElementById('nextBtn').classList.add('hidden');
+    quizAnswered = false;
 }
 
 function selectOption(index) {
-    if (hasChecked) return;
+    if (quizAnswered) return;
 
-    selectedOptionIndex = index;
-
+    selectedAnswers[currentQuestion] = index;
     const options = document.querySelectorAll('.quiz-option');
-    options.forEach(opt => opt.classList.remove('selected'));
-
-    options[index].classList.add('selected');
+    options.forEach((option, i) => {
+        option.classList.remove('selected', 'correct', 'incorrect');
+        if (i === index) {
+            option.classList.add('selected');
+        }
+    });
 }
 
-document.getElementById('checkBtn').addEventListener('click', () => {
-
-    if (selectedOptionIndex === null) {
-        alert("Select an answer first!");
+function nextQuestion() {
+    if (selectedAnswers[currentQuestion] === undefined) {
+        alert('Please select an answer!');
         return;
     }
 
-    hasChecked = true;
+    if (!quizAnswered) {
+        // Show correct/incorrect feedback
+        const correct = quizData[currentQuestion].correct;
+        const options = document.querySelectorAll('.quiz-option');
+        
+        options.forEach((option, i) => {
+            if (i === correct) {
+                option.classList.add('correct');
+                if (i === selectedAnswers[currentQuestion]) {
+                    score++;
+                }
+            } else if (i === selectedAnswers[currentQuestion]) {
+                option.classList.add('incorrect');
+            }
+        });
 
-    const question = questions[currentQuestionIndex];
-    const options = document.querySelectorAll('.quiz-option');
-    const explanationBox = document.getElementById('explanationBox');
-
-    if (selectedOptionIndex === question.correct) {
-        options[selectedOptionIndex].classList.add('correct');
-        score++;
-    } else {
-        options[selectedOptionIndex].classList.add('incorrect');
-        options[question.correct].classList.add('correct');
+        quizAnswered = true;
+        document.getElementById('nextBtn').textContent = 'Next Question';
+        return;
     }
 
-    // ✅ SHOW EXPLANATION
-    explanationBox.textContent = question.explanation;
-    explanationBox.classList.add('show');
+    currentQuestion++;
+    displayQuestion();
+}
 
-    // ✅ SCORE MESSAGE
-    const percentage = (score / questions.length) * 100;
+function showResults() {
+    document.getElementById('quizQuestion').classList.add('hidden');
+    document.getElementById('quizResults').classList.remove('hidden');
+
+    const percentage = Math.round((score / quizData.length) * 100);
+    document.getElementById('scoreValue').textContent = score;
+    document.getElementById('scorePercentage').textContent = percentage + '%';
 
     let message = '';
     if (percentage === 100) {
-        message = 'Perfect Score!';
+        message = '🌟 Perfect Score! You\'re a nanotechnology expert!';
     } else if (percentage >= 80) {
-        message = 'Excellent!';
+        message = '🎉 Excellent understanding of nanotechnology!';
     } else if (percentage >= 60) {
-        message = 'Good job!';
+        message = '👍 Good job! You have a solid grasp of the concepts.';
     } else {
-        message = 'Keep practicing!';
+        message = '📚 Keep learning! Review the material and try again.';
     }
-
     document.getElementById('scoreMessage').textContent = message;
-
-    document.getElementById('checkBtn').classList.add('hidden');
-    document.getElementById('nextBtn').classList.remove('hidden');
-});
-
-document.getElementById('nextBtn').addEventListener('click', () => {
-
-    // ✅ CLEAR EXPLANATION (important)
-    const explanationBox = document.getElementById('explanationBox');
-    explanationBox.textContent = "";
-    explanationBox.classList.remove('show');
-
-    currentQuestionIndex++;
-
-    if (currentQuestionIndex < questions.length) {
-        loadQuestion();
-    } else {
-        showResults();
-    }
-});
-
-function showResults() {
-    document.querySelector('.quiz-container').innerHTML = `
-        <h2>Quiz Finished!</h2>
-        <p>Your score: ${score} / ${questions.length}</p>
-    `;
 }
 
-// START QUIZ
-loadQuestion();
+function restartQuiz() {
+    currentQuestion = 0;
+    score = 0;
+    selectedAnswers = [];
+    quizAnswered = false;
+    document.getElementById('quizQuestion').classList.remove('hidden');
+    document.getElementById('quizResults').classList.add('hidden');
+    document.getElementById('nextBtn').textContent = 'Next Question';
+    displayQuestion();
+}
+
+// Initialize quiz
+displayQuestion();
 
 /* ============================================
    SCROLL ANIMATIONS
