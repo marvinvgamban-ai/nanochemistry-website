@@ -47,7 +47,7 @@ body {
 
 /* TITLE GLOW */
 .hero h1 {
-    font-size: 8rem;
+    font-size: 5rem;
     margin-bottom: 15px;
 
     color: #ffffff;
@@ -71,7 +71,7 @@ body {
 
 /* SUBTITLE */
 .subtitle {
-    font-size: 4rem;
+    font-size: 2rem;
     margin-bottom: 15px;
     color: #e0e0e0;
 
@@ -80,7 +80,7 @@ body {
 
 /* AUTHOR TEXT */
 .author {
-    font-size: 2rem;
+    font-size: 1.2rem;
     color: #ffffff;
 
     text-shadow: 0 0 8px rgba(143, 0, 255, 0.7);
