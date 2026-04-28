@@ -311,20 +311,28 @@ const videoLinks = {
 
 function playVideo(videoId) {
     if (videoLinks[videoId]) {
-        videoFrame.src = videoLinks[videoId];
+        videoFrame.src = videoLinks[videoId] + '?autoplay=1';
         modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
     }
 }
 
 function closeVideo() {
     modal.style.display = 'none';
     videoFrame.src = '';
+    document.body.style.overflow = 'auto';
 }
 
 closeBtn.addEventListener('click', closeVideo);
 
 window.addEventListener('click', (event) => {
     if (event.target === modal) {
+        closeVideo();
+    }
+});
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") {
         closeVideo();
     }
 });
