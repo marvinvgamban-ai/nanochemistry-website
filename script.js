@@ -145,7 +145,6 @@ window.addEventListener('scroll', () => {
    SIZE COMPARISON SLIDER
    ============================================ */
 
-// Ensure the script runs after the HTML is loaded
 document.addEventListener('DOMContentLoaded', () => {
     const sizeSlider = document.getElementById('sizeSlider');
     const sizeLabel = document.getElementById('sizeLabel');
@@ -153,28 +152,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (sizeSlider && particleDemo) {
         sizeSlider.addEventListener('input', function() {
-            // Convert string value to a number
             const val = parseInt(this.value);
             
-            // Update label text
+            // 1. Update text
             sizeLabel.textContent = val + ' nm';
 
-            // Calculate display size: 
-            // We multiply by 2 so 100nm = 200px. 
-            // We add 10 so 1nm is at least 12px (visible).
-            const displaySize = (val * 2) + 10;
+            // 2. Accurate Scaling
+            // We multiply by 2 so it's visible on screens. 
+            // At 1nm, width is 2px. At 100nm, width is 200px.
+            // The ratio remains mathematically accurate.
+            const displaySize = val * 2; 
 
-            // Apply size directly to the element
+            // 3. Force the style update
             particleDemo.style.width = displaySize + 'px';
             particleDemo.style.height = displaySize + 'px';
-            
-            console.log("New Size Applied:", displaySize + "px"); // Debugging
         });
 
-        // Trigger once on load to set initial size
+        // Initialize at the current slider value on page load
         sizeSlider.dispatchEvent(new Event('input'));
     }
 });
+
 /* ============================================
    SURFACE AREA TO VOLUME RATIO
    ============================================ */
