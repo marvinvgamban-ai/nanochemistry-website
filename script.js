@@ -145,23 +145,27 @@ window.addEventListener('scroll', () => {
    SIZE COMPARISON SLIDER
    ============================================ */
 
-// Get references to the elements
-const sizeSlider = document.getElementById('sizeSlider');
-const sizeLabel = document.getElementById('sizeLabel');
-const particleDemo = document.getElementById('particleDemo');
+// Ensure the script runs after the HTML is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    const sizeSlider = document.getElementById('sizeSlider');
+    const sizeLabel = document.getElementById('sizeLabel');
+    const particleDemo = document.getElementById('particleDemo');
 
-sizeSlider.addEventListener('input', function() {
-    const value = this.value; 
-    sizeLabel.textContent = value + ' nm';
-    
-    // Multiplier of 3 means 1nm = 3px, and 100nm = 300px.
-    // This keeps the growth accurate relative to the input.
-    const displaySize = value * 3; 
-    
-    particleDemo.style.width = displaySize + 'px';
-    particleDemo.style.height = displaySize + 'px';
-});
-
+    if(sizeSlider && particleDemo) {
+        sizeSlider.addEventListener('input', function() {
+            const value = parseInt(this.value);
+            
+            // Update the text label
+            sizeLabel.textContent = value + ' nm';
+            
+            // ACCURATE SCALING:
+            // We use (value * 2) for the growth and + 20 so it never disappears.
+            // A 100nm particle will still look significantly larger than a 1nm one.
+            const newSize = (value * 2) + 20; 
+            
+            particleDemo.style.width = newSize + 'px';
+            particleDemo.style.height = newSize + 'px';
+        });
 /* ============================================
    SURFACE AREA TO VOLUME RATIO
    ============================================ */
