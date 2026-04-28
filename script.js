@@ -145,15 +145,25 @@ window.addEventListener('scroll', () => {
    SIZE COMPARISON SLIDER
    ============================================ */
 
+// Get references to the elements
 const sizeSlider = document.getElementById('sizeSlider');
 const sizeLabel = document.getElementById('sizeLabel');
 const particleDemo = document.getElementById('particleDemo');
 
-sizeSlider.addEventListener('input', (e) => {
-    const size = e.target.value;
-    sizeLabel.textContent = size + ' nm';
-    particleDemo.style.width = size + 'px';
-    particleDemo.style.height = size + 'px';
+// Listen for slider input
+sizeSlider.addEventListener('input', function() {
+    const value = this.value; // Gets value from 1 to 100
+    
+    // 1. Update the text label
+    sizeLabel.textContent = value + ' nm';
+    
+    // 2. Update the circle size
+    // We use a multiplier (e.g., 2) so 1nm = 2px, making it visible.
+    // 100nm will be exactly 100x larger than 1nm proportionally.
+    const pixelSize = value * 2; 
+    
+    particleDemo.style.width = pixelSize + 'px';
+    particleDemo.style.height = pixelSize + 'px';
 });
 
 /* ============================================
