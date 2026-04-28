@@ -150,20 +150,16 @@ const sizeSlider = document.getElementById('sizeSlider');
 const sizeLabel = document.getElementById('sizeLabel');
 const particleDemo = document.getElementById('particleDemo');
 
-// Listen for slider input
 sizeSlider.addEventListener('input', function() {
-    const value = this.value; // Gets value from 1 to 100
-    
-    // 1. Update the text label
+    const value = this.value; 
     sizeLabel.textContent = value + ' nm';
     
-    // 2. Update the circle size
-    // We use a multiplier (e.g., 2) so 1nm = 2px, making it visible.
-    // 100nm will be exactly 100x larger than 1nm proportionally.
-    const pixelSize = value * 2; 
+    // Multiplier of 3 means 1nm = 3px, and 100nm = 300px.
+    // This keeps the growth accurate relative to the input.
+    const displaySize = value * 3; 
     
-    particleDemo.style.width = pixelSize + 'px';
-    particleDemo.style.height = pixelSize + 'px';
+    particleDemo.style.width = displaySize + 'px';
+    particleDemo.style.height = displaySize + 'px';
 });
 
 /* ============================================
