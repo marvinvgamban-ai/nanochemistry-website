@@ -1026,26 +1026,6 @@ section {
     border-color: var(--danger-color);
     color: var(--danger-color);
 }
-.explanation-box {
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 12px;
-    background: rgba(0, 217, 255, 0.1);
-    border: 1px solid var(--accent-color);
-    color: var(--text-color);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    text-align: left;
-    display: none; /* Hidden by default */
-}
-
-.explanation-box.show {
-    display: block;
-}
-
-.hidden {
-    display: none !important;
-}
 
 .quiz-btn {
     width: 100%;
