@@ -910,12 +910,12 @@ section {
     color: white;
     padding: 15px;
 
-    opacity: 0.3;
+    opacity: 0;
     transition: 0.3s ease;
 }
 
 .gallery-item:hover .gallery-overlay {
-    opacity: 0.3;
+    opacity: 1;
 }
 
 .gallery-overlay h4 {
