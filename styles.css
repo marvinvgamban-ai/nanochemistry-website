@@ -1185,6 +1185,46 @@ section {
     padding-left: 5px;
 }
 
+/* Small Footer References Styling */
+.footer-references {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: left;
+}
+
+.footer-references h4 {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.ref-list p {
+    font-size: 0.75rem; /* Small text */
+    color: var(--text-light); /* Dimmed color */
+    line-height: 1.4;
+    margin-bottom: 6px;
+    padding-left: 15px;
+    text-indent: -15px; /* Hanging indent for APA style */
+}
+
+.ref-list em {
+    color: var(--text-color);
+    font-style: italic;
+}
+
+/* Ensure links in references are subtle */
+.ref-list a {
+    color: var(--accent-purple);
+    text-decoration: none;
+}
+
+.ref-list a:hover {
+    text-decoration: underline;
+}
+
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
