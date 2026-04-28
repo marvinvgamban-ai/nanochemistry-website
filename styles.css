@@ -585,18 +585,17 @@ section {
 }
 
 .particle-demo {
-    /* Your existing colors/shadows */
-    background: radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.8), rgba(124, 58, 237, 0.6));
-    box-shadow: 0 0 30px rgba(0, 217, 255, 0.6);
+    /* Existing visual styles */
+    background: radial-gradient(circle at 30% 30%, #00d9ff, #7c3aed);
     border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+    
+    /* Center the particle */
+    margin: 20px auto;
+    display: block;
 
-    /* FIXES FOR DISAPPEARING: */
-    display: block !important; /* Ensures the div isn't hidden */
-    margin: 20px auto;         /* Centers it */
-    width: 22px;               /* Default starting size */
-    height: 22px;              /* Default starting size */
-    min-width: 5px;            /* Absolute minimum */
-    min-height: 5px;           /* Absolute minimum */
+    /* Transition makes the resizing look smooth */
+    transition: width 0.1s ease, height 0.1s ease;
 }
 
 #sizeLabel {
