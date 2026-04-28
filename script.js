@@ -303,10 +303,10 @@ const videoFrame = document.getElementById('videoFrame');
 const closeBtn = document.querySelector('.close');
 
 const videoLinks = {
-    intro: 'https://www.youtube.com/embed/Uo_AzQA-lFo',
-    materials: 'https://www.youtube.com/embed/mF3JTqGqHKg',
-    medicine: 'https://www.youtube.com/embed/sKPcjaBXLhU',
-    future: 'https://www.youtube.com/embed/f8ZYOFb5YTQ'
+    intro: 'https://www.youtube.com/embed/j_wQgy97Pi4',
+    materials: 'https://www.youtube.com/embed/PNElByWIGNc',
+    medicine: 'https://www.youtube.com/embed/oSsRdFuHeWQ',
+    future: 'https://www.youtube.com/embed/TltwRAhZ6Qk'
 };
 
 function playVideo(videoId) {
