@@ -151,21 +151,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const sizeLabel = document.getElementById('sizeLabel');
     const particleDemo = document.getElementById('particleDemo');
 
-    if(sizeSlider && particleDemo) {
+    if (sizeSlider && particleDemo) {
         sizeSlider.addEventListener('input', function() {
-            const value = parseInt(this.value);
+            // Convert string value to a number
+            const val = parseInt(this.value);
             
-            // Update the text label
-            sizeLabel.textContent = value + ' nm';
+            // Update label text
+            sizeLabel.textContent = val + ' nm';
+
+            // Calculate display size: 
+            // We multiply by 2 so 100nm = 200px. 
+            // We add 10 so 1nm is at least 12px (visible).
+            const displaySize = (val * 2) + 10;
+
+            // Apply size directly to the element
+            particleDemo.style.width = displaySize + 'px';
+            particleDemo.style.height = displaySize + 'px';
             
-            // ACCURATE SCALING:
-            // We use (value * 2) for the growth and + 20 so it never disappears.
-            // A 100nm particle will still look significantly larger than a 1nm one.
-            const newSize = (value * 2) + 20; 
-            
-            particleDemo.style.width = newSize + 'px';
-            particleDemo.style.height = newSize + 'px';
+            console.log("New Size Applied:", displaySize + "px"); // Debugging
         });
+
+        // Trigger once on load to set initial size
+        sizeSlider.dispatchEvent(new Event('input'));
+    }
+});
 /* ============================================
    SURFACE AREA TO VOLUME RATIO
    ============================================ */
