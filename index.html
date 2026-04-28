@@ -412,9 +412,9 @@ T<!DOCTYPE html>
             
             <div class="quiz-container">
                 <div class="quiz-question" id="quizQuestion">
-                <div class="quiz-progress">
-                <div class="progress-bar">
-                <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+    <div class="quiz-progress">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
         </div>
         <p><span id="questionCount">1</span> / 10</p>
     </div>
@@ -422,11 +422,12 @@ T<!DOCTYPE html>
     <div class="quiz-options" id="optionsContainer"></div>
     
     <div id="explanationBox" class="explanation-box hidden"></div>
-    <button class="quiz-btn" id="checkBtn" onclick="checkAnswer()">Check Answer</button>
     
-    <button class="quiz-btn hidden" id="nextBtn" onclick="nextQuestion()" style="margin-top: 10px;">Next Question</button>
+    <div class="quiz-controls" style="margin-top: 20px;">
+        <button class="quiz-btn" id="checkBtn">Check Answer</button>
+        <button class="quiz-btn hidden" id="nextBtn">Next Question</button>
+    </div>
 </div>
-
                 <div class="quiz-results hidden" id="quizResults">
                     <h3>Quiz Complete! 🎉</h3>
                     <div class="score-display">
