@@ -585,17 +585,20 @@ section {
 }
 
 .particle-demo {
-    /* Existing visual styles */
-    background: radial-gradient(circle at 30% 30%, #00d9ff, #7c3aed);
     border-radius: 50%;
-    box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+    background: radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.8), rgba(124, 58, 237, 0.6));
+    box-shadow: 0 0 30px rgba(0, 217, 255, 0.6);
     
     /* Center the particle */
     margin: 20px auto;
     display: block;
 
-    /* Transition makes the resizing look smooth */
+    /* Transition allows for smooth growth */
     transition: width 0.1s ease, height 0.1s ease;
+    
+    /* Starting point - slider is at 1nm */
+    width: 2px;
+    height: 2px;
 }
 
 #sizeLabel {
