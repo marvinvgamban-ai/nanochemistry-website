@@ -753,39 +753,59 @@ section {
 }
 
 .video-thumbnail {
-    position: relative;
     width: 100%;
     height: 200px;
+    position: relative;
+    border-radius: 10px;
     overflow: hidden;
-    background: linear-gradient(135deg, var(--accent-purple), var(--accent-color));
+    background-size: cover;
+    background-position: center;
 }
 
-.video-thumbnail img {
+/* Each video thumbnail background */
+.video-thumbnail.intro {
+    background-image: url("https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80");
+}
+
+.video-thumbnail.materials {
+    background-image: url("https://images.unsplash.com/photo-1581091870620-1e7f4b2a2f9f?auto=format&fit=crop&w=1200&q=80");
+}
+
+.video-thumbnail.medicine {
+    background-image: url("https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80");
+}
+
+.video-thumbnail.future {
+    background-image: url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80");
+}
+
+/* Dark overlay for readability */
+.video-thumbnail::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+    background: rgba(0,0,0,0.35);
 }
 
-.video-card:hover .video-thumbnail img {
-    transform: scale(1.1);
-}
-
+/* Play button stays above image */
 .play-button {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
-    background: rgba(0, 217, 255, 0.9);
+    background: rgba(143, 0, 255, 0.8);
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    transition: all 0.3s ease;
+    color: white;
+    cursor: pointer;
+    z-index: 2;
 }
 
 .video-card:hover .play-button {
