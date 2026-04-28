@@ -71,7 +71,7 @@ body {
 
 /* SUBTITLE */
 .subtitle {
-    font-size: 5rem;
+    font-size: 4rem;
     margin-bottom: 15px;
     color: #e0e0e0;
 
@@ -80,7 +80,7 @@ body {
 
 /* AUTHOR TEXT */
 .author {
-    font-size: 3rem;
+    font-size: 2rem;
     color: #ffffff;
 
     text-shadow: 0 0 8px rgba(143, 0, 255, 0.7);
