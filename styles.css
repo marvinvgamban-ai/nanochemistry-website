@@ -585,10 +585,10 @@ section {
 }
 
 .particle-demo {
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, rgba(0, 217, 255, 0.8), rgba(124, 58, 237, 0.6));
-    box-shadow: 0 0 30px rgba(0, 217, 255, 0.6), inset -2px -2px 10px rgba(124, 58, 237, 0.4);
-    transition: all 0.3s ease;
+    /* ... your existing glow/color styles ... */
+    display: block;
+    margin: 0 auto; /* Keeps it centered in the display box */
+    transition: width 0.1s ease, height 0.1s ease; /* Makes the resizing smooth */
 }
 
 #sizeLabel {
