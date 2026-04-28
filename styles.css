@@ -33,6 +33,37 @@ body {
     line-height: 1.6;
 }
 
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   /* vertical center */
+    align-items: center;       /* horizontal center */
+    text-align: center;
+
+    height: 100vh;             /* full screen height */
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+    text-shadow: 0 0 10px #8f00ff,
+                 0 0 20px #8f00ff,
+                 0 0 40px #8f00ff;
+}
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.author {
+    margin-top: 15px;
+    font-size: 1rem;
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(143, 0, 255, 0.7);
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
