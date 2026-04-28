@@ -362,22 +362,22 @@ const questions = [
         question: "What is the typical size range of nanomaterials?",
         options: ["1 - 100 nm", "100 - 500 nm", "1 - 100 μm", "10 - 1000 nm"],
         correct: 0,
-        explanation: "Nanomaterials are defined by having at least one dimension in the range of 1 to 100 nanometers. At this scale, quantum effects begin to influence material behavior."
+        explanation: "Nanomaterials are 1–100 nm in size."
     },
     {
         question: "Which nanomaterial is a single layer of carbon atoms?",
         options: ["Carbon Nanotube", "Graphene", "Fullerene", "Quantum Dot"],
         correct: 1,
-        explanation: "Graphene is a single, atomic-scale layer of carbon atoms arranged in a hexagonal lattice. It is known for its incredible strength and conductivity."
+        explanation: "Graphene is a single layer of carbon atoms."
     },
     {
-        question: "What happens to the surface area-to-volume ratio as a particle gets smaller?",
-        options: ["It decreases", "It stays the same", "It increases", "It becomes zero"],
+        question: "What happens to surface area as size decreases?",
+        options: ["Decreases", "Same", "Increases", "Zero"],
         correct: 2,
-        explanation: "As particles decrease in size, their surface area-to-volume ratio increases significantly. This is why nanoparticles are often much more chemically reactive than bulk materials."
+        explanation: "Smaller particles have higher surface area-to-volume ratio."
     }
-    // Add the rest of your 10 questions following this same format...
-];
+      // Add the rest of your 10 questions following this same format... 
+   ];
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -387,49 +387,59 @@ let hasChecked = false;
 function loadQuestion() {
     hasChecked = false;
     selectedOptionIndex = null;
-    
+
     const question = questions[currentQuestionIndex];
+
     document.getElementById('questionText').textContent = question.question;
     document.getElementById('questionCount').textContent = currentQuestionIndex + 1;
-    document.getElementById('progressFill').style.width = ((currentQuestionIndex + 1) / questions.length * 100) + '%';
-    
+
+    document.getElementById('progressFill').style.width =
+        ((currentQuestionIndex + 1) / questions.length * 100) + '%';
+
     const optionsContainer = document.getElementById('optionsContainer');
     optionsContainer.innerHTML = '';
-    
+
     question.options.forEach((option, index) => {
-        const button = document.createElement('div');
-        button.className = 'quiz-option';
-        button.textContent = option;
-        button.onclick = () => selectOption(index);
-        optionsContainer.appendChild(button);
+        const btn = document.createElement('div');
+        btn.className = 'quiz-option';
+        btn.textContent = option;
+        btn.onclick = () => selectOption(index);
+        optionsContainer.appendChild(btn);
     });
 
-    document.getElementById('explanationBox').classList.remove('show');
+    // ✅ RESET EXPLANATION
+    const explanationBox = document.getElementById('explanationBox');
+    explanationBox.textContent = "";
+    explanationBox.classList.remove('show');
+
     document.getElementById('checkBtn').classList.remove('hidden');
     document.getElementById('nextBtn').classList.add('hidden');
 }
 
 function selectOption(index) {
     if (hasChecked) return;
-    
+
     selectedOptionIndex = index;
+
     const options = document.querySelectorAll('.quiz-option');
     options.forEach(opt => opt.classList.remove('selected'));
+
     options[index].classList.add('selected');
 }
 
 document.getElementById('checkBtn').addEventListener('click', () => {
+
     if (selectedOptionIndex === null) {
-        alert("Please select an answer first!");
+        alert("Select an answer first!");
         return;
     }
 
     hasChecked = true;
+
     const question = questions[currentQuestionIndex];
     const options = document.querySelectorAll('.quiz-option');
     const explanationBox = document.getElementById('explanationBox');
 
-    // Color code the options
     if (selectedOptionIndex === question.correct) {
         options[selectedOptionIndex].classList.add('correct');
         score++;
@@ -438,29 +448,39 @@ document.getElementById('checkBtn').addEventListener('click', () => {
         options[question.correct].classList.add('correct');
     }
 
-    // Show Explanation
+    // ✅ SHOW EXPLANATION
     explanationBox.textContent = question.explanation;
     explanationBox.classList.add('show');
 
-   let message = '';
+    // ✅ SCORE MESSAGE
+    const percentage = (score / questions.length) * 100;
+
+    let message = '';
     if (percentage === 100) {
-        message = '🌟 Perfect Score! You\'re a nanotechnology expert!';
+        message = 'Perfect Score!';
     } else if (percentage >= 80) {
-        message = '🎉 Excellent understanding of nanotechnology!';
+        message = 'Excellent!';
     } else if (percentage >= 60) {
-        message = '👍 Good job! You have a solid grasp of the concepts.';
+        message = 'Good job!';
     } else {
-        message = '📚 Keep learning! Review the material and try again.';
+        message = 'Keep practicing!';
     }
+
     document.getElementById('scoreMessage').textContent = message;
-   
-    // Swap buttons
+
     document.getElementById('checkBtn').classList.add('hidden');
     document.getElementById('nextBtn').classList.remove('hidden');
 });
 
 document.getElementById('nextBtn').addEventListener('click', () => {
+
+    // ✅ CLEAR EXPLANATION (important)
+    const explanationBox = document.getElementById('explanationBox');
+    explanationBox.textContent = "";
+    explanationBox.classList.remove('show');
+
     currentQuestionIndex++;
+
     if (currentQuestionIndex < questions.length) {
         loadQuestion();
     } else {
@@ -468,7 +488,14 @@ document.getElementById('nextBtn').addEventListener('click', () => {
     }
 });
 
-// Initialize the first question
+function showResults() {
+    document.querySelector('.quiz-container').innerHTML = `
+        <h2>Quiz Finished!</h2>
+        <p>Your score: ${score} / ${questions.length}</p>
+    `;
+}
+
+// START QUIZ
 loadQuestion();
 
 /* ============================================
