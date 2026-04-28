@@ -1142,94 +1142,67 @@ section {
    ============================================ */
 
 .footer {
-    background: linear-gradient(135deg, #000000, var(--primary-color));
-    border-top: 2px solid rgba(124, 58, 237, 0.3);
-    padding: 50px 0 20px;
-    margin-top: 50px;
+    background: #111;
+    color: #ccc;
+    padding: 40px 20px 10px;
+    font-size: 0.9rem;
 }
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    margin-bottom: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
 }
 
 .footer-section h4 {
-    font-size: 1.1rem;
-    color: var(--accent-color);
-    margin-bottom: 15px;
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 1rem;
 }
 
-.footer-section p {
-    color: var(--text-light);
-    font-size: 0.95rem;
+.footer-section p,
+.footer-section li {
+    font-size: 0.85rem;
+    line-height: 1.5;
 }
 
 .footer-section ul {
     list-style: none;
+    padding: 0;
 }
 
 .footer-section ul li {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
-.footer-section ul li a {
-    color: var(--text-light);
+.footer-section a {
+    color: #ccc;
     text-decoration: none;
-    transition: all 0.3s ease;
 }
 
-.footer-section ul li a:hover {
-    color: var(--accent-color);
-    padding-left: 5px;
+.footer-section a:hover {
+    color: #00d9ff;
 }
 
-/* Small Footer References Styling */
+/* REFERENCES FIX */
 .footer-references {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: left;
-}
-
-.footer-references h4 {
-    font-size: 0.9rem;
-    color: var(--accent-color);
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    max-height: 200px;       /* keeps it inside box */
+    overflow-y: auto;        /* scroll if too long */
 }
 
 .ref-list p {
-    font-size: 0.75rem; /* Small text */
-    color: var(--text-light); /* Dimmed color */
-    line-height: 1.4;
     margin-bottom: 6px;
-    padding-left: 15px;
-    text-indent: -15px; /* Hanging indent for APA style */
+    font-size: 0.75rem;      /* smaller APA text */
+    line-height: 1.4;
 }
 
-.ref-list em {
-    color: var(--text-color);
-    font-style: italic;
-}
-
-/* Ensure links in references are subtle */
-.ref-list a {
-    color: var(--accent-purple);
-    text-decoration: none;
-}
-
-.ref-list a:hover {
-    text-decoration: underline;
-}
-
+/* Bottom bar */
 .footer-bottom {
     text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid rgba(124, 58, 237, 0.2);
-    color: var(--text-light);
+    margin-top: 20px;
+    border-top: 1px solid #333;
+    padding-top: 10px;
+    font-size: 0.75rem;
 }
 
 /* ============================================
